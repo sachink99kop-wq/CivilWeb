@@ -207,11 +207,18 @@
     #work { background: var(--deep); }
     .works-grid {
       display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 2px; margin-top: 60px;
+      gap: 26px; margin-top: 60px;
     }
     .work-card {
       position: relative; overflow: hidden;
       aspect-ratio: 4/5;
+      border-radius: 14px; border: 1px solid rgba(200,213,196,0.08);
+      transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+    }
+    .work-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 44px rgba(0,0,0,0.4);
+      border-color: rgba(122,158,126,0.4);
     }
     .work-bg {
       position: absolute; inset: 0;
