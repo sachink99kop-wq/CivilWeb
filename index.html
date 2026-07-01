@@ -593,10 +593,7 @@
     </div>
   </div>
   <div class="hero-image">
-    <div class="hero-portrait">
-      <div class="about-image-inner">
-        <span class="monogram" style="font-size:12rem;color:rgba(201,169,110,0.18)">RKB</span>
-      </div>
+    <div class="hero-portrait" style="background-image:url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=900&q=75&auto=format&fit=crop');background-size:cover;background-position:center">
       <p class="portrait-label">Ravi Kale Builders, est. 2008</p>
     </div>
   </div>
@@ -608,10 +605,7 @@
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="about-image fade-up">
-    <div class="about-image-inner">
-      <span class="monogram">RKB</span>
-    </div>
+  <div class="about-image fade-up" style="background-image:url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=75&auto=format&fit=crop');background-size:cover;background-position:center">
   </div>
   <div class="about-right fade-up">
     <p class="section-label">Who We Are</p>
@@ -850,19 +844,20 @@
 <script>
 // ─── DATA ─────────────────────────────────────────────
 const projects = [
-  { cat: 'Residential', title: 'Kale Residency', year: '2024', color: '#0d1a14',
+  { cat: 'Residential', title: 'Kale Residency', year: '2024', img: '1486406146926-c627a92ad1ab',
     desc: 'A 24-unit premium apartment complex in Belgaum with landscaped courtyards and covered parking.' },
-  { cat: 'Commercial', title: 'University Arcade', year: '2023', color: '#1a1422',
+  { cat: 'Commercial', title: 'University Arcade', year: '2023', img: '1449157291145-7efd050a4d0e',
     desc: 'A four-storey commercial arcade of retail and office units on University Avenue.' },
-  { cat: 'Villa', title: 'Tilakwadi Villas', year: '2023', color: '#14181a',
+  { cat: 'Villa', title: 'Tilakwadi Villas', year: '2023', img: '1568605114967-8130f3a36994',
     desc: 'A row of six contemporary 3-BHK villas, designed for natural light and cross-ventilation.' },
-  { cat: 'Institutional', title: 'Vidya Bhavan Block', year: '2022', color: '#1a1208',
+  { cat: 'Institutional', title: 'Vidya Bhavan Block', year: '2022', img: '1518005020951-eccb494ad742',
     desc: 'A new academic block for a local school — earthquake-resistant RCC frame and large classrooms.' },
-  { cat: 'Renovation', title: 'Heritage Wada Revival', year: '2021', color: '#0e141a',
+  { cat: 'Renovation', title: 'Heritage Wada Revival', year: '2021', img: '1460574283810-2aab119d8511',
     desc: 'Structural restoration of a heritage residence, preserving its character with modern reinforcement.' },
-  { cat: 'Industrial', title: 'Auto Park Warehouse', year: '2021', color: '#110f1a',
+  { cat: 'Industrial', title: 'Auto Park Warehouse', year: '2021', img: '1416331108676-a22ccb276e35',
     desc: 'A 40,000 sq. ft. pre-engineered warehouse with mezzanine offices near the Pune–Bengaluru highway.' },
 ];
+const IMG = id => `https://images.unsplash.com/photo-${id}?w=800&q=70&auto=format&fit=crop`;
 
 const services = [
   { name: 'Residential Construction', price: 'turnkey',
@@ -905,7 +900,7 @@ const worksGrid = document.getElementById('worksGrid');
 projects.forEach(p => {
   worksGrid.appendChild(el(`
     <div class="work-card">
-      <div class="work-bg" style="background:linear-gradient(145deg,${p.color},#0e1117)"></div>
+      <div class="work-bg" style="background-image:url('${IMG(p.img)}');background-size:cover;background-position:center"></div>
       <div class="work-always">
         <p class="work-cat">${p.cat}</p>
         <h3 class="work-title">${p.title}</h3>
