@@ -255,6 +255,17 @@ if (faqList) {
 const yearEl = document.getElementById('year');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+// Footer contact icons (matched by label text)
+const fcIcons = {
+  'corporate office': '<svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>',
+  'phone': '<svg viewBox="0 0 24 24"><path d="M6.6 10.8a12 12 0 0 0 5.6 5.6l1.9-1.9a1 1 0 0 1 1-.24 11 11 0 0 0 3.4.55 1 1 0 0 1 1 1V19a1 1 0 0 1-1 1A16 16 0 0 1 4 4a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1 11 11 0 0 0 .55 3.4 1 1 0 0 1-.24 1z"/></svg>',
+  'email': '<svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4l-8 5-8-5V6l8 5 8-5z"/></svg>'
+};
+document.querySelectorAll('.footer-contact .fc-label').forEach(lbl => {
+  const key = lbl.textContent.trim().toLowerCase();
+  if (fcIcons[key]) lbl.insertAdjacentHTML('afterbegin', `<span class="fc-ic">${fcIcons[key]}</span>`);
+});
+
 // ─── NAV ──────────────────────────────────────────────
 const navbar = document.getElementById('navbar');
 const scrollTopBtn = document.getElementById('scrollTop');

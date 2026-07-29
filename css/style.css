@@ -848,3 +848,8 @@
     }
     .theme-toggle:hover { color: var(--gold); }
     .theme-toggle svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* Footer contact icons */
+    .footer-contact .fc-label { display: flex; align-items: center; gap: 7px; }
+    .fc-ic { display: inline-flex; }
+    .fc-ic svg { width: 13px; height: 13px; fill: currentColor; }
