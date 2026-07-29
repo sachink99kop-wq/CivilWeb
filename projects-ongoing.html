@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Plot Configurations — Ravi Kale Builders</title>
-  <meta name="description" content="Thoughtfully planned plot sizes and configurations for homeowners, investors, and future builders in Belgaum."/>
+  <title>Ongoing Projects — Ravi Kale Builders</title>
+  <meta name="description" content="Ongoing construction projects currently in progress across Belgaum by Ravi Kale Builders."/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
@@ -17,26 +17,31 @@
   <ul class="nav-links" id="navLinks">
     <li><a href="index.html">Home</a></li>
     <li><a href="about.html">About</a></li>
-    <li><a href="projects-upcoming.html">Projects</a></li>
+    <li><a href="projects-upcoming.html" class="active">Projects</a></li>
     <li><a href="services.html">Services</a></li>
-    <li><a href="plots.html" class="active">Plots</a></li>
+    <li><a href="plots.html">Plots</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
 </nav>
 <header class="page-hero">
-  <p class="section-label">Options Available</p>
-  <h1>Plot <em>Configurations</em></h1>
-  <p>Choose from thoughtfully planned plot sizes designed for homeowners, investors, and future builders.</p>
+  <p class="section-label">Our Portfolio</p>
+  <h1>Ongoing <em>projects</em></h1>
+  <p>Live construction sites currently in progress — engineered, monitored, and on schedule.</p>
 </header>
 
-<section id="plots" style="background:var(--deep)">
-  <div class="plots-grid" id="plotsGrid"></div>
+<section id="work">
+  <div class="proj-tabs">
+    <a href="projects-upcoming.html">Upcoming</a>
+    <a href="projects-ongoing.html" class="active">Ongoing</a>
+    <a href="projects-completed.html">Completed</a>
+  </div>
+  <div id="worksGroups" data-status="Ongoing"></div>
 </section>
 
-<section class="cta-band" style="background:var(--ink)">
-  <h2>Not sure which plot <em>suits you?</em></h2>
-  <p>Tell us your budget and plans — we'll recommend the right configuration and location.</p>
-  <a class="btn-primary" href="contact.html">Talk to Us</a>
+<section class="cta-band">
+  <h2>Want to see the work in progress?</h2>
+  <p>We're happy to arrange a site visit to any of our ongoing projects at a time that suits you.</p>
+  <a class="btn-primary" href="contact.html">Get in Touch</a>
 </section>
 <footer>
   <div class="footer-top">
@@ -69,12 +74,11 @@
       </ul>
     </div>
     <div class="footer-col">
-      <h4 class="footer-heading">Services</h4>
+      <h4 class="footer-heading">Projects</h4>
       <ul class="footer-nav">
-        <li><a href="services.html">Residential Construction</a></li>
-        <li><a href="services.html">Commercial &amp; Industrial</a></li>
-        <li><a href="services.html">Civil Contracting</a></li>
-        <li><a href="services.html">Renovation &amp; Restoration</a></li>
+        <li><a href="projects-upcoming.html">Upcoming</a></li>
+        <li><a href="projects-ongoing.html">Ongoing</a></li>
+        <li><a href="projects-completed.html">Completed</a></li>
         <li><a href="plots.html">Plot Configurations</a></li>
       </ul>
     </div>

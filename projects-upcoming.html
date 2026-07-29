@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Projects — Ravi Kale Builders</title>
-  <meta name="description" content="Explore upcoming, ongoing, and completed construction projects by Ravi Kale Builders across Belgaum and North Karnataka."/>
+  <title>Upcoming Projects — Ravi Kale Builders</title>
+  <meta name="description" content="Upcoming residential, commercial, and township projects launching soon from Ravi Kale Builders in Belgaum."/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
@@ -17,7 +17,7 @@
   <ul class="nav-links" id="navLinks">
     <li><a href="index.html">Home</a></li>
     <li><a href="about.html">About</a></li>
-    <li><a href="projects.html" class="active">Projects</a></li>
+    <li><a href="projects-upcoming.html" class="active">Projects</a></li>
     <li><a href="services.html">Services</a></li>
     <li><a href="plots.html">Plots</a></li>
     <li><a href="contact.html">Contact</a></li>
@@ -25,18 +25,23 @@
 </nav>
 <header class="page-hero">
   <p class="section-label">Our Portfolio</p>
-  <h1>Projects across every <em>stage</em></h1>
-  <p>Upcoming launches, work in progress, and delivered landmarks — a look at what we build.</p>
+  <h1>Upcoming <em>projects</em></h1>
+  <p>New launches and planned developments coming soon across Belgaum and North Karnataka.</p>
 </header>
 
 <section id="work">
-  <div id="worksGroups"></div>
+  <div class="proj-tabs">
+    <a href="projects-upcoming.html" class="active">Upcoming</a>
+    <a href="projects-ongoing.html">Ongoing</a>
+    <a href="projects-completed.html">Completed</a>
+  </div>
+  <div id="worksGroups" data-status="Upcoming"></div>
 </section>
 
 <section class="cta-band">
-  <h2>Want to see a project <em>in person?</em></h2>
-  <p>We're happy to arrange a site visit to any of our ongoing or completed projects.</p>
-  <a class="btn-primary" href="contact.html">Book a Site Visit</a>
+  <h2>Interested in an upcoming project?</h2>
+  <p>Register your interest early and our team will keep you updated on launch dates and pricing.</p>
+  <a class="btn-primary" href="contact.html">Get in Touch</a>
 </section>
 <footer>
   <div class="footer-top">
@@ -62,19 +67,18 @@
       <h4 class="footer-heading">Company</h4>
       <ul class="footer-nav">
         <li><a href="about.html">About Us</a></li>
-        <li><a href="projects.html">Projects</a></li>
+        <li><a href="projects-upcoming.html">Projects</a></li>
         <li><a href="about.html#process">Our Process</a></li>
         <li><a href="about.html#testimonials">Testimonials</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4 class="footer-heading">Services</h4>
+      <h4 class="footer-heading">Projects</h4>
       <ul class="footer-nav">
-        <li><a href="services.html">Residential Construction</a></li>
-        <li><a href="services.html">Commercial &amp; Industrial</a></li>
-        <li><a href="services.html">Civil Contracting</a></li>
-        <li><a href="services.html">Renovation &amp; Restoration</a></li>
+        <li><a href="projects-upcoming.html">Upcoming</a></li>
+        <li><a href="projects-ongoing.html">Ongoing</a></li>
+        <li><a href="projects-completed.html">Completed</a></li>
         <li><a href="plots.html">Plot Configurations</a></li>
       </ul>
     </div>

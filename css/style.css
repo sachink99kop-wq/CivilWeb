@@ -719,3 +719,15 @@
       .lead-row.reverse .lead-photo { order: -1; }
       .lead-text p { text-align: left; }
     }
+
+    /* ─── PROJECT STATUS TABS ──────────────────────────── */
+    .proj-tabs { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 46px; }
+    .proj-tabs a {
+      padding: 11px 30px; border: 1px solid rgba(200,213,196,0.16); border-radius: 999px;
+      font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--mist); text-decoration: none; transition: all 0.3s;
+    }
+    .proj-tabs a:hover { border-color: var(--sage); color: var(--gold); }
+    .proj-tabs a.active { background: var(--sage); border-color: var(--sage); color: var(--ink); }
+    #worksGroups[data-status] { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; }
+    @media (max-width: 900px) { #worksGroups[data-status] { grid-template-columns: 1fr; } }

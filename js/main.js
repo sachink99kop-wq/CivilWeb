@@ -105,41 +105,50 @@ if (featuredGrid) {
   });
 }
 
-// Projects page — detailed cards grouped by status
+// Projects — detailed cards. A container with data-status="Upcoming|Ongoing|Completed"
+// renders only that status (used by the per-status pages); otherwise all groups render.
+function pcard(p, status) {
+  const s = status.toLowerCase();
+  return el(`
+    <article class="pcard fade-up">
+      <div class="pcard-img" style="background-image:url('${IMG(p.img)}')">
+        <span class="work-tag work-tag--${s}">${status}</span>
+      </div>
+      <div class="pcard-body">
+        <p class="work-cat">${p.cat}</p>
+        <h3 class="pcard-title">${p.title}</h3>
+        <p class="pcard-desc">${p.desc}</p>
+        <div class="pcard-specs">
+          <div><span>Location</span><strong>${p.location}</strong></div>
+          <div><span>Size</span><strong>${p.size}</strong></div>
+          <div><span>Status</span><strong>${p.meta}</strong></div>
+        </div>
+      </div>
+    </article>`);
+}
 const worksGroups = document.getElementById('worksGroups');
 if (worksGroups) {
-  projectGroups.forEach(g => {
-    const s = g.status.toLowerCase();
-    const group = el(`
-      <div class="work-group fade-up">
-        <div class="work-group-head">
-          <span class="work-status work-status--${s}">${g.status}</span>
-          <span class="work-group-line"></span>
-          <span class="work-group-count">${g.items.length} Projects</span>
-        </div>
-        <div class="pgrid"></div>
-      </div>`);
-    const grid = group.querySelector('.pgrid');
-    g.items.forEach(p => {
-      grid.appendChild(el(`
-        <article class="pcard">
-          <div class="pcard-img" style="background-image:url('${IMG(p.img)}')">
-            <span class="work-tag work-tag--${s}">${g.status}</span>
+  const only = worksGroups.dataset.status;
+  if (only) {
+    const g = projectGroups.find(x => x.status === only);
+    if (g) g.items.forEach(p => worksGroups.appendChild(pcard(p, g.status)));
+  } else {
+    projectGroups.forEach(g => {
+      const s = g.status.toLowerCase();
+      const group = el(`
+        <div class="work-group fade-up">
+          <div class="work-group-head">
+            <span class="work-status work-status--${s}">${g.status}</span>
+            <span class="work-group-line"></span>
+            <span class="work-group-count">${g.items.length} Projects</span>
           </div>
-          <div class="pcard-body">
-            <p class="work-cat">${p.cat}</p>
-            <h3 class="pcard-title">${p.title}</h3>
-            <p class="pcard-desc">${p.desc}</p>
-            <div class="pcard-specs">
-              <div><span>Location</span><strong>${p.location}</strong></div>
-              <div><span>Size</span><strong>${p.size}</strong></div>
-              <div><span>Status</span><strong>${p.meta}</strong></div>
-            </div>
-          </div>
-        </article>`));
+          <div class="pgrid"></div>
+        </div>`);
+      const grid = group.querySelector('.pgrid');
+      g.items.forEach(p => grid.appendChild(pcard(p, g.status)));
+      worksGroups.appendChild(group);
     });
-    worksGroups.appendChild(group);
-  });
+  }
 }
 
 // Services list
