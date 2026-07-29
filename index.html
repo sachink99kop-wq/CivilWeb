@@ -205,9 +205,23 @@
 
     /* WORK GRID */
     #work { background: var(--deep); }
+    .work-group { margin-top: 56px; }
+    .work-group:first-child { margin-top: 60px; }
+    .work-group-head { display: flex; align-items: center; gap: 18px; margin-bottom: 26px; }
+    .work-status {
+      font-family: 'Cormorant Garamond', serif; font-weight: 300;
+      font-size: 1.7rem; line-height: 1;
+    }
+    .work-status--upcoming { color: var(--gold); }
+    .work-status--ongoing { color: var(--sage); }
+    .work-status--completed { color: var(--mist); }
+    .work-group-line { flex: 1; height: 1px; background: rgba(200,213,196,0.12); }
+    .work-group-count {
+      font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted);
+    }
     .works-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 26px; margin-top: 60px;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
     }
     .work-card {
       position: relative; overflow: hidden;
@@ -215,6 +229,15 @@
       border-radius: 14px; border: 1px solid rgba(200,213,196,0.08);
       transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
     }
+    .work-tag {
+      position: absolute; top: 14px; left: 14px; z-index: 3;
+      padding: 4px 11px; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase;
+      border-radius: 999px; backdrop-filter: blur(4px);
+      background: rgba(14,17,23,0.55); border: 1px solid rgba(200,213,196,0.2);
+    }
+    .work-tag--upcoming { color: var(--gold); border-color: rgba(201,169,110,0.5); }
+    .work-tag--ongoing { color: var(--sage); border-color: rgba(122,158,126,0.5); }
+    .work-tag--completed { color: var(--mist); border-color: rgba(200,213,196,0.3); }
     .work-card:hover {
       transform: translateY(-6px);
       box-shadow: 0 20px 44px rgba(0,0,0,0.4);
@@ -642,9 +665,9 @@
 
 <!-- WORK / PROJECTS -->
 <section id="work">
-  <p class="section-label fade-up">Selected Projects</p>
-  <h2 class="section-title fade-up">Work that <em>stands the test of time</em></h2>
-  <div class="works-grid" id="worksGrid"></div>
+  <p class="section-label fade-up">Our Portfolio</p>
+  <h2 class="section-title fade-up">Projects across every <em>stage</em></h2>
+  <div id="worksGroups"></div>
 </section>
 
 <!-- SERVICES -->
@@ -850,19 +873,37 @@
 
 <script>
 // ─── DATA ─────────────────────────────────────────────
-const projects = [
-  { cat: 'Residential', title: 'Kale Residency', year: '2024', img: '1486406146926-c627a92ad1ab',
-    desc: 'A 24-unit premium apartment complex in Belgaum with landscaped courtyards and covered parking.' },
-  { cat: 'Commercial', title: 'University Arcade', year: '2023', img: '1449157291145-7efd050a4d0e',
-    desc: 'A four-storey commercial arcade of retail and office units on University Avenue.' },
-  { cat: 'Villa', title: 'Tilakwadi Villas', year: '2023', img: '1568605114967-8130f3a36994',
-    desc: 'A row of six contemporary 3-BHK villas, designed for natural light and cross-ventilation.' },
-  { cat: 'Institutional', title: 'Vidya Bhavan Block', year: '2022', img: '1518005020951-eccb494ad742',
-    desc: 'A new academic block for a local school — earthquake-resistant RCC frame and large classrooms.' },
-  { cat: 'Renovation', title: 'Heritage Wada Revival', year: '2021', img: '1460574283810-2aab119d8511',
-    desc: 'Structural restoration of a heritage residence, preserving its character with modern reinforcement.' },
-  { cat: 'Industrial', title: 'Auto Park Warehouse', year: '2021', img: '1416331108676-a22ccb276e35',
-    desc: 'A 40,000 sq. ft. pre-engineered warehouse with mezzanine offices near the Pune–Bengaluru highway.' },
+const projectGroups = [
+  { status: 'Upcoming', items: [
+    { cat: 'Residential', title: 'Skyline Residency', meta: 'Launching Q1 2027', img: '1541888946425-d81bb19240f5',
+      desc: '48-unit high-rise apartments in Tilakwadi with a clubhouse and rooftop garden.' },
+    { cat: 'Villa', title: 'Green Valley Villas', meta: 'Bookings open', img: '1580587771525-78b9dba3b914',
+      desc: 'A gated community of 20 eco-friendly villas with solar and rainwater harvesting.' },
+    { cat: 'Commercial', title: 'Metro Business Hub', meta: 'Planned 2027', img: '1487958449943-2429e8be8625',
+      desc: 'A Grade-A office tower with a retail podium and multi-level parking on CBT Road.' },
+    { cat: 'Township', title: 'Riverside Township', meta: 'Phase 1 approvals', img: '1600607687939-ce8a6c25118c',
+      desc: 'An integrated township of plots, homes, and amenities on the city outskirts.' },
+  ]},
+  { status: 'Completed', items: [
+    { cat: 'Residential', title: 'Kale Residency', meta: 'Delivered 2024', img: '1486406146926-c627a92ad1ab',
+      desc: 'A 24-unit premium apartment complex with landscaped courtyards and covered parking.' },
+    { cat: 'Commercial', title: 'University Arcade', meta: 'Delivered 2023', img: '1449157291145-7efd050a4d0e',
+      desc: 'A four-storey commercial arcade of retail and office units on University Avenue.' },
+    { cat: 'Institutional', title: 'Vidya Bhavan Block', meta: 'Delivered 2022', img: '1518005020951-eccb494ad742',
+      desc: 'An earthquake-resistant RCC academic block with large, well-lit classrooms.' },
+    { cat: 'Restoration', title: 'Heritage Wada Revival', meta: 'Delivered 2021', img: '1460574283810-2aab119d8511',
+      desc: 'Structural restoration of a heritage residence with modern reinforcement.' },
+  ]},
+  { status: 'Ongoing', items: [
+    { cat: 'Industrial', title: 'Auto Park Warehouse', meta: '70% complete', img: '1416331108676-a22ccb276e35',
+      desc: 'A 40,000 sq. ft. pre-engineered warehouse with mezzanine offices at Desur.' },
+    { cat: 'Villa', title: 'Tilakwadi Villas', meta: 'Finishing stage', img: '1568605114967-8130f3a36994',
+      desc: 'A row of six contemporary 3-BHK villas designed for natural light and cross-ventilation.' },
+    { cat: 'Institutional', title: 'Sadhana School Annexe', meta: 'Structure stage', img: '1523217582562-09d0def993a6',
+      desc: 'A new RCC-framed classroom annexe and auditorium under construction.' },
+    { cat: 'Commercial', title: 'Corner Court Retail', meta: 'Slab work', img: '1600585154340-be6161a56a0c',
+      desc: 'A mixed-use retail and office corner block on Khanapur Road at structural stage.' },
+  ]},
 ];
 const IMG = id => `https://images.unsplash.com/photo-${id}?w=800&q=70&auto=format&fit=crop`;
 
@@ -903,22 +944,36 @@ const faqs = [
 // ─── RENDER ───────────────────────────────────────────
 function el(html) { const t = document.createElement('template'); t.innerHTML = html.trim(); return t.content.firstChild; }
 
-const worksGrid = document.getElementById('worksGrid');
-projects.forEach(p => {
-  worksGrid.appendChild(el(`
-    <div class="work-card">
-      <div class="work-bg" style="background-image:url('${IMG(p.img)}');background-size:cover;background-position:center"></div>
-      <div class="work-always">
-        <p class="work-cat">${p.cat}</p>
-        <h3 class="work-title">${p.title}</h3>
+const worksGroups = document.getElementById('worksGroups');
+projectGroups.forEach(g => {
+  const group = el(`
+    <div class="work-group fade-up">
+      <div class="work-group-head">
+        <span class="work-status work-status--${g.status.toLowerCase()}">${g.status}</span>
+        <span class="work-group-line"></span>
+        <span class="work-group-count">${g.items.length} Projects</span>
       </div>
-      <div class="work-overlay">
-        <p class="work-cat">${p.cat}</p>
-        <h3 class="work-title">${p.title}</h3>
-        <p class="work-ai-desc">${p.desc}</p>
-        <p class="work-year">${p.year}</p>
-      </div>
-    </div>`));
+      <div class="works-grid"></div>
+    </div>`);
+  const grid = group.querySelector('.works-grid');
+  g.items.forEach(p => {
+    grid.appendChild(el(`
+      <div class="work-card">
+        <div class="work-bg" style="background-image:url('${IMG(p.img)}');background-size:cover;background-position:center"></div>
+        <span class="work-tag work-tag--${g.status.toLowerCase()}">${g.status}</span>
+        <div class="work-always">
+          <p class="work-cat">${p.cat}</p>
+          <h3 class="work-title">${p.title}</h3>
+        </div>
+        <div class="work-overlay">
+          <p class="work-cat">${p.cat}</p>
+          <h3 class="work-title">${p.title}</h3>
+          <p class="work-ai-desc">${p.desc}</p>
+          <p class="work-year">${p.meta}</p>
+        </div>
+      </div>`));
+  });
+  worksGroups.appendChild(group);
 });
 
 const servicesList = document.getElementById('servicesList');
