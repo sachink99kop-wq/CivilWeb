@@ -323,3 +323,67 @@ if (form) {
   wa.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12 2a9.9 9.9 0 0 0-8.5 15l-1.3 4.8 4.9-1.3A9.9 9.9 0 1 0 12 2zm0 1.8a8.1 8.1 0 0 1 6.9 12.4l-.2.3.8 2.8-2.9-.8-.3.2A8.1 8.1 0 1 1 12 3.8zm-3.4 3.7c-.2 0-.5.1-.7.4-.3.3-1 .9-1 2.2s1 2.6 1.2 2.8c.2.2 2 3.1 4.9 4.2 2.4 1 2.9.8 3.4.7.5 0 1.6-.6 1.8-1.3.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3-.3-.2-1.6-.8-1.9-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.5-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.4.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.6-1.5-.8-2-.2-.5-.4-.4-.6-.4h-.5z"/></svg>';
   document.body.appendChild(wa);
 })();
+
+// ─── SIDE ENQUIRY TAB + SLIDE-OUT FORM ────────────────
+(function () {
+  const tab = document.createElement('button');
+  tab.type = 'button';
+  tab.className = 'side-tab';
+  tab.textContent = 'Enquiry';
+  tab.setAttribute('aria-label', 'Open enquiry form');
+
+  const overlay = document.createElement('div');
+  overlay.className = 'enq-overlay';
+
+  const panel = document.createElement('aside');
+  panel.className = 'enq-panel';
+  panel.setAttribute('aria-hidden', 'true');
+  panel.innerHTML = `
+    <div class="enq-head">
+      <div>
+        <div class="enq-title">Contact for More Queries</div>
+        <div class="enq-sub">We'll reply within one working day.</div>
+      </div>
+      <button class="enq-close" type="button">Close</button>
+    </div>
+    <form class="enq-form" novalidate>
+      <input class="form-field" name="name" placeholder="First Name" required />
+      <input class="form-field" type="email" name="email" placeholder="Email Address" required />
+      <input class="form-field" type="tel" name="phone" placeholder="Mobile Number" />
+      <textarea class="form-field" name="message" placeholder="Subject / your message…" required></textarea>
+      <button class="form-submit" type="submit">Send Message</button>
+      <p class="enq-note"></p>
+    </form>`;
+
+  document.body.append(tab, overlay, panel);
+
+  const open = () => { overlay.classList.add('open'); panel.classList.add('open'); panel.setAttribute('aria-hidden', 'false'); };
+  const close = () => { overlay.classList.remove('open'); panel.classList.remove('open'); panel.setAttribute('aria-hidden', 'true'); };
+  tab.addEventListener('click', open);
+  overlay.addEventListener('click', close);
+  panel.querySelector('.enq-close').addEventListener('click', close);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+
+  const f = panel.querySelector('.enq-form');
+  const note = panel.querySelector('.enq-note');
+  f.addEventListener('submit', e => {
+    e.preventDefault();
+    const d = new FormData(f);
+    const name = (d.get('name') || '').trim();
+    const email = (d.get('email') || '').trim();
+    const phone = (d.get('phone') || '').trim();
+    const message = (d.get('message') || '').trim();
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if (!name || !emailOk || !message) {
+      note.style.color = 'var(--gold)';
+      note.textContent = 'Please add your name, a valid email, and a message.';
+      return;
+    }
+    const subject = encodeURIComponent('Website enquiry from ' + name);
+    const body = encodeURIComponent(`${message}\n\n— ${name}\nEmail: ${email}\nPhone: ${phone || 'N/A'}`);
+    window.location.href = `mailto:support@ravikalebuilders.in?subject=${subject}&body=${body}`;
+    note.style.color = 'var(--muted)';
+    note.textContent = 'Opening your mail app… If nothing happens, write to support@ravikalebuilders.in.';
+    f.reset();
+  });
+})();
