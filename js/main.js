@@ -1,3 +1,10 @@
+// ─── THEME (light / dark) ─────────────────────────────
+(function () {
+  // Default to the site's native dark theme; honour a saved choice.
+  const theme = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', theme);
+})();
+
 // ─── DATA ─────────────────────────────────────────────
 const projectGroups = [
   { status: 'Upcoming', items: [
@@ -262,6 +269,31 @@ const navLinks = document.getElementById('navLinks');
 if (navToggle && navLinks) {
   navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
   navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+}
+
+// Theme toggle button (added into the nav)
+if (navLinks) {
+  const SUN = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
+  const MOON = '<svg viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
+  const li = document.createElement('li');
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'theme-toggle';
+  btn.setAttribute('aria-label', 'Toggle light or dark mode');
+  const paint = () => {
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    btn.innerHTML = isLight ? MOON : SUN;
+    btn.title = isLight ? 'Switch to dark mode' : 'Switch to light mode';
+  };
+  paint();
+  btn.addEventListener('click', () => {
+    const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+    paint();
+  });
+  li.appendChild(btn);
+  navLinks.appendChild(li);
 }
 
 // ─── SCROLL ANIMATIONS ────────────────────────────────

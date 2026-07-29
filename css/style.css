@@ -804,3 +804,47 @@
     @media (max-width: 560px) {
       .honour-values { grid-template-columns: 1fr; }
     }
+
+    /* ─── LIGHT MODE ───────────────────────────────────── */
+    :root[data-theme="light"] {
+      --ink: #f4f1ea;      /* page background */
+      --cream: #1b2430;    /* primary text (now dark) */
+      --mist: #39465a;     /* secondary text */
+      --muted: #6b7585;    /* muted text */
+      --deep: #eae3d6;     /* alt section background */
+      --sage: #5d7f64;     /* green accent (darker for contrast) */
+      --gold: #a07d3e;     /* gold accent (darker for contrast) */
+      --glass: rgba(0,0,0,0.04);
+    }
+    /* Surfaces that were hardcoded dark */
+    :root[data-theme="light"] nav.scrolled { background: rgba(244,241,234,0.92); }
+    :root[data-theme="light"] .nav-links { background: rgba(244,241,234,0.98); }
+    :root[data-theme="light"] .contact-form { background: rgba(255,255,255,0.6); }
+    :root[data-theme="light"] .form-field { background: rgba(0,0,0,0.035); }
+    :root[data-theme="light"] .form-field:focus { background: rgba(93,127,100,0.08); }
+    :root[data-theme="light"] .lead-avatar { background: linear-gradient(160deg,#e8e1d3,#d6cbb4); }
+    :root[data-theme="light"] .work-group-line { background: rgba(27,36,48,0.14); }
+    /* Borders that used a light-on-dark tint */
+    :root[data-theme="light"] :is(
+      .feature-card,.plot-card,.pcard,.work-card,.testimonial-card,.process-step,
+      .service-item,.footer,.footer-bottom,.footer-social a,.footer-legal-block,
+      .form-field,.contact-form,.enq-modal,.faq-item,.proj-tabs a,
+      .lead-avatar,.framed-img,.hero-portrait,.about-image
+    ) { border-color: rgba(27,36,48,0.14); }
+    /* Text that sits ON dark photo overlays must stay light */
+    :root[data-theme="light"] .work-title,
+    :root[data-theme="light"] .work-ai-desc,
+    :root[data-theme="light"] .portrait-label { color: #f2ede6; }
+    :root[data-theme="light"] .work-year { color: #d3dbe6; }
+    :root[data-theme="light"] .work-tag--upcoming { color: #e3c584; border-color: rgba(227,197,132,0.5); }
+    :root[data-theme="light"] .work-tag--ongoing { color: #a9cbb0; border-color: rgba(169,203,176,0.5); }
+    :root[data-theme="light"] .work-tag--completed { color: #e9eee2; border-color: rgba(233,238,226,0.45); }
+
+    /* Theme toggle button */
+    .theme-toggle {
+      background: none; border: none; color: var(--mist); cursor: pointer;
+      display: inline-flex; align-items: center; justify-content: center; padding: 2px;
+      transition: color 0.3s;
+    }
+    .theme-toggle:hover { color: var(--gold); }
+    .theme-toggle svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
