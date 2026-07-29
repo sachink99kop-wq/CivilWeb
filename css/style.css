@@ -660,3 +660,46 @@
     @media (max-width: 560px) {
       .featured-grid { grid-template-columns: 1fr; }
     }
+
+    /* ─── "WHAT ARE YOU LOOKING FOR" ───────────────────── */
+    #looking { text-align: center; }
+    .lf-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 60px; }
+    .lf-card { padding: 16px; }
+    .lf-icon { color: var(--sage); margin-bottom: 20px; display: flex; justify-content: center; }
+    .lf-icon svg { width: 46px; height: 46px; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+    .lf-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 1.9rem; color: var(--cream); margin-bottom: 14px; }
+    .lf-desc { font-size: 0.92rem; line-height: 1.8; color: var(--muted); max-width: 340px; margin: 0 auto; }
+
+    /* ─── LEADERSHIP ───────────────────────────────────── */
+    #leadership { background: var(--deep); }
+    .lead-sub { color: var(--muted); max-width: 540px; margin-top: 10px; line-height: 1.75; font-size: 0.95rem; }
+    .lead-row { display: grid; grid-template-columns: auto 1fr; gap: 54px; align-items: center; margin-top: 56px; }
+    .lead-row.reverse { grid-template-columns: 1fr auto; }
+    .lead-photo { width: 280px; }
+    .lead-avatar {
+      width: 280px; height: 340px; position: relative;
+      border: 1px solid rgba(122,158,126,0.3);
+      background: linear-gradient(160deg, #1a2332, #0d1a12);
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
+    }
+    .lead-avatar::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(circle at 60% 30%, rgba(201,169,110,0.12), transparent 55%);
+    }
+    .lead-avatar.circle { width: 280px; height: 280px; border-radius: 50%; margin: 0 auto; }
+    .lead-avatar .lead-mono { font-family: 'Cormorant Garamond', serif; font-size: 4.5rem; color: rgba(122,158,126,0.45); position: relative; }
+    .lead-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .lead-caption { text-align: center; margin-top: 18px; }
+    .lead-name { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; color: var(--cream); }
+    .lead-role { font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--sage); margin-top: 5px; }
+    .lead-text h3 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 2rem; color: var(--cream); margin-bottom: 18px; }
+    .lead-text h3 em { font-style: italic; color: var(--gold); }
+    .lead-text p { color: var(--mist); line-height: 1.9; font-size: 0.94rem; margin-bottom: 14px; }
+    .lead-text p:last-child { margin-bottom: 0; }
+
+    @media (max-width: 900px) {
+      .lf-grid { grid-template-columns: 1fr; }
+      .lead-row, .lead-row.reverse { grid-template-columns: 1fr; gap: 30px; justify-items: center; text-align: center; }
+      .lead-row.reverse .lead-photo { order: -1; }
+      .lead-text p { text-align: left; }
+    }
