@@ -300,3 +300,17 @@ if (form) {
     setTimeout(() => { btn.textContent = 'Send Enquiry'; btn.style.background = ''; btn.style.color = ''; }, 4000);
   });
 }
+
+// ─── FLOATING WHATSAPP BUTTON ─────────────────────────
+(function () {
+  const waNumber = '919876543210'; // +91 98765 43210
+  const waText = encodeURIComponent("Hi Ravi Kale Builders, I'd like to know more about your construction services.");
+  const wa = document.createElement('a');
+  wa.id = 'waFloat';
+  wa.href = `https://wa.me/${waNumber}?text=${waText}`;
+  wa.target = '_blank';
+  wa.rel = 'noopener';
+  wa.setAttribute('aria-label', 'Chat with us on WhatsApp');
+  wa.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12 2a9.9 9.9 0 0 0-8.5 15l-1.3 4.8 4.9-1.3A9.9 9.9 0 1 0 12 2zm0 1.8a8.1 8.1 0 0 1 6.9 12.4l-.2.3.8 2.8-2.9-.8-.3.2A8.1 8.1 0 1 1 12 3.8zm-3.4 3.7c-.2 0-.5.1-.7.4-.3.3-1 .9-1 2.2s1 2.6 1.2 2.8c.2.2 2 3.1 4.9 4.2 2.4 1 2.9.8 3.4.7.5 0 1.6-.6 1.8-1.3.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3-.3-.2-1.6-.8-1.9-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.5-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.4.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.6-1.5-.8-2-.2-.5-.4-.4-.6-.4h-.5z"/></svg>';
+  document.body.appendChild(wa);
+})();
