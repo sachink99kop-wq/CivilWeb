@@ -324,48 +324,39 @@ if (form) {
   document.body.appendChild(wa);
 })();
 
-// ─── SIDE ENQUIRY TAB + SLIDE-OUT FORM ────────────────
+// ─── ENQUIRY POPUP (auto-opens on every page load) ────
 (function () {
-  const tab = document.createElement('button');
-  tab.type = 'button';
-  tab.className = 'side-tab';
-  tab.textContent = 'Enquiry';
-  tab.setAttribute('aria-label', 'Open enquiry form');
-
   const overlay = document.createElement('div');
   overlay.className = 'enq-overlay';
-
-  const panel = document.createElement('aside');
-  panel.className = 'enq-panel';
-  panel.setAttribute('aria-hidden', 'true');
-  panel.innerHTML = `
-    <div class="enq-head">
-      <div>
-        <div class="enq-title">Contact for More Queries</div>
-        <div class="enq-sub">We'll reply within one working day.</div>
+  overlay.innerHTML = `
+    <div class="enq-modal" role="dialog" aria-modal="true" aria-label="Contact for more queries">
+      <div class="enq-head">
+        <div>
+          <div class="enq-title">Contact for More Queries</div>
+          <div class="enq-sub">We'll reply within one working day.</div>
+        </div>
+        <button class="enq-close" type="button">Close</button>
       </div>
-      <button class="enq-close" type="button">Close</button>
-    </div>
-    <form class="enq-form" novalidate>
-      <input class="form-field" name="name" placeholder="First Name" required />
-      <input class="form-field" type="email" name="email" placeholder="Email Address" required />
-      <input class="form-field" type="tel" name="phone" placeholder="Mobile Number" />
-      <textarea class="form-field" name="message" placeholder="Subject / your message…" required></textarea>
-      <button class="form-submit" type="submit">Send Message</button>
-      <p class="enq-note"></p>
-    </form>`;
+      <form class="enq-form" novalidate>
+        <input class="form-field" name="name" placeholder="First Name" required />
+        <input class="form-field" type="email" name="email" placeholder="Email Address" required />
+        <input class="form-field" type="tel" name="phone" placeholder="Mobile Number" />
+        <textarea class="form-field" name="message" placeholder="Subject / your message…" required></textarea>
+        <button class="form-submit" type="submit">Send Message</button>
+        <p class="enq-note"></p>
+      </form>
+    </div>`;
+  document.body.appendChild(overlay);
 
-  document.body.append(tab, overlay, panel);
-
-  const open = () => { overlay.classList.add('open'); panel.classList.add('open'); panel.setAttribute('aria-hidden', 'false'); };
-  const close = () => { overlay.classList.remove('open'); panel.classList.remove('open'); panel.setAttribute('aria-hidden', 'true'); };
-  tab.addEventListener('click', open);
-  overlay.addEventListener('click', close);
-  panel.querySelector('.enq-close').addEventListener('click', close);
+  const modal = overlay.querySelector('.enq-modal');
+  const open = () => overlay.classList.add('open');
+  const close = () => overlay.classList.remove('open');
+  overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+  overlay.querySelector('.enq-close').addEventListener('click', close);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
 
-  const f = panel.querySelector('.enq-form');
-  const note = panel.querySelector('.enq-note');
+  const f = overlay.querySelector('.enq-form');
+  const note = overlay.querySelector('.enq-note');
   f.addEventListener('submit', e => {
     e.preventDefault();
     const d = new FormData(f);
@@ -383,7 +374,11 @@ if (form) {
     const body = encodeURIComponent(`${message}\n\n— ${name}\nEmail: ${email}\nPhone: ${phone || 'N/A'}`);
     window.location.href = `mailto:support@ravikalebuilders.in?subject=${subject}&body=${body}`;
     note.style.color = 'var(--muted)';
-    note.textContent = 'Opening your mail app… If nothing happens, write to support@ravikalebuilders.in.';
+    note.textContent = 'Opening your mail app… you can close this now.';
     f.reset();
+    setTimeout(close, 1200);
   });
+
+  // Auto-open shortly after each page load
+  setTimeout(open, 800);
 })();
