@@ -735,9 +735,11 @@
     /* ─── ENQUIRY POPUP (auto-opens on load) ───────────── */
     .enq-overlay {
       position: fixed; inset: 0; background: rgba(0,0,0,0.62); backdrop-filter: blur(3px);
-      display: flex; align-items: center; justify-content: center; padding: 20px;
+      display: flex; align-items: flex-start; justify-content: flex-end;
+      padding: 92px 26px 24px;
       opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s; z-index: 400;
     }
+    @media (max-width: 560px) { .enq-overlay { padding: 84px 14px 18px; justify-content: center; } }
     .enq-overlay.open { opacity: 1; visibility: visible; }
 
     .enq-modal {
