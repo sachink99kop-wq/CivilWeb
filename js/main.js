@@ -83,11 +83,10 @@ const faqs = [
 // ─── RENDER HELPERS ───────────────────────────────────
 function el(html) { const t = document.createElement('template'); t.innerHTML = html.trim(); return t.content.firstChild; }
 
-// Home — featured project cards (compact), whole card links to the projects page
-const featuredIds = ['skyline-residency', 'kale-residency', 'metro-business-hub', 'tilakwadi-villas', 'university-arcade', 'auto-park-warehouse'];
+// Home — featured project cards (compact, all projects), whole card links to the projects page
 const featuredGrid = document.getElementById('featuredGrid');
 if (featuredGrid) {
-  allProjects.filter(p => featuredIds.includes(p.id)).forEach(p => {
+  allProjects.forEach(p => {
     featuredGrid.appendChild(el(`
       <a class="work-card fade-up" href="projects.html" aria-label="${p.title} — view on projects page">
         <div class="work-bg" style="background-image:url('${IMG(p.img)}');background-size:cover;background-position:center"></div>
