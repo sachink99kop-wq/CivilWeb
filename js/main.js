@@ -1,36 +1,49 @@
 // ─── DATA ─────────────────────────────────────────────
 const projectGroups = [
   { status: 'Upcoming', items: [
-    { cat: 'Residential', title: 'Skyline Residency', meta: 'Launching Q1 2027', img: '1541888946425-d81bb19240f5',
+    { id: 'skyline-residency', cat: 'Residential', title: 'Skyline Residency', meta: 'Launching Q1 2027', img: '1541888946425-d81bb19240f5',
+      location: 'Tilakwadi, Belgaum', size: '48 units · G+12',
       desc: '48-unit high-rise apartments in Tilakwadi with a clubhouse and rooftop garden.' },
-    { cat: 'Villa', title: 'Green Valley Villas', meta: 'Bookings open', img: '1580587771525-78b9dba3b914',
+    { id: 'green-valley-villas', cat: 'Villa', title: 'Green Valley Villas', meta: 'Bookings open', img: '1580587771525-78b9dba3b914',
+      location: 'Vadgaon, Belgaum', size: '20 villas · 2,400 sq.ft',
       desc: 'A gated community of 20 eco-friendly villas with solar and rainwater harvesting.' },
-    { cat: 'Commercial', title: 'Metro Business Hub', meta: 'Planned 2027', img: '1487958449943-2429e8be8625',
+    { id: 'metro-business-hub', cat: 'Commercial', title: 'Metro Business Hub', meta: 'Planned 2027', img: '1487958449943-2429e8be8625',
+      location: 'CBT Road, Belgaum', size: 'G+8 · 90,000 sq.ft',
       desc: 'A Grade-A office tower with a retail podium and multi-level parking on CBT Road.' },
-    { cat: 'Township', title: 'Riverside Township', meta: 'Phase 1 approvals', img: '1600607687939-ce8a6c25118c',
+    { id: 'riverside-township', cat: 'Township', title: 'Riverside Township', meta: 'Phase 1 approvals', img: '1600607687939-ce8a6c25118c',
+      location: 'Machhe, Belgaum', size: '18 acres · Phase 1',
       desc: 'An integrated township of plots, homes, and amenities on the city outskirts.' },
   ]},
   { status: 'Completed', items: [
-    { cat: 'Residential', title: 'Kale Residency', meta: 'Delivered 2024', img: '1486406146926-c627a92ad1ab',
+    { id: 'kale-residency', cat: 'Residential', title: 'Kale Residency', meta: 'Delivered 2024', img: '1486406146926-c627a92ad1ab',
+      location: 'Tilakwadi, Belgaum', size: '24 units · G+4',
       desc: 'A 24-unit premium apartment complex with landscaped courtyards and covered parking.' },
-    { cat: 'Commercial', title: 'University Arcade', meta: 'Delivered 2023', img: '1449157291145-7efd050a4d0e',
+    { id: 'university-arcade', cat: 'Commercial', title: 'University Arcade', meta: 'Delivered 2023', img: '1449157291145-7efd050a4d0e',
+      location: 'University Ave, Belgaum', size: 'G+4 · 32 units',
       desc: 'A four-storey commercial arcade of retail and office units on University Avenue.' },
-    { cat: 'Institutional', title: 'Vidya Bhavan Block', meta: 'Delivered 2022', img: '1518005020951-eccb494ad742',
+    { id: 'vidya-bhavan-block', cat: 'Institutional', title: 'Vidya Bhavan Block', meta: 'Delivered 2022', img: '1518005020951-eccb494ad742',
+      location: 'Shahapur, Belgaum', size: '18 classrooms',
       desc: 'An earthquake-resistant RCC academic block with large, well-lit classrooms.' },
-    { cat: 'Restoration', title: 'Heritage Wada Revival', meta: 'Delivered 2021', img: '1460574283810-2aab119d8511',
+    { id: 'heritage-wada-revival', cat: 'Restoration', title: 'Heritage Wada Revival', meta: 'Delivered 2021', img: '1460574283810-2aab119d8511',
+      location: 'Camp, Belgaum', size: '6,500 sq.ft',
       desc: 'Structural restoration of a heritage residence with modern reinforcement.' },
   ]},
   { status: 'Ongoing', items: [
-    { cat: 'Industrial', title: 'Auto Park Warehouse', meta: '70% complete', img: '1416331108676-a22ccb276e35',
+    { id: 'auto-park-warehouse', cat: 'Industrial', title: 'Auto Park Warehouse', meta: '70% complete', img: '1416331108676-a22ccb276e35',
+      location: 'Desur, Belgaum', size: '40,000 sq.ft',
       desc: 'A 40,000 sq. ft. pre-engineered warehouse with mezzanine offices at Desur.' },
-    { cat: 'Villa', title: 'Tilakwadi Villas', meta: 'Finishing stage', img: '1568605114967-8130f3a36994',
+    { id: 'tilakwadi-villas', cat: 'Villa', title: 'Tilakwadi Villas', meta: 'Finishing stage', img: '1568605114967-8130f3a36994',
+      location: 'Tilakwadi, Belgaum', size: '6 villas · 3 BHK',
       desc: 'A row of six contemporary 3-BHK villas designed for natural light and cross-ventilation.' },
-    { cat: 'Institutional', title: 'Sadhana School Annexe', meta: 'Structure stage', img: '1523217582562-09d0def993a6',
+    { id: 'sadhana-school-annexe', cat: 'Institutional', title: 'Sadhana School Annexe', meta: 'Structure stage', img: '1523217582562-09d0def993a6',
+      location: 'Nehru Nagar, Belgaum', size: '12 rooms + hall',
       desc: 'A new RCC-framed classroom annexe and auditorium under construction.' },
-    { cat: 'Commercial', title: 'Corner Court Retail', meta: 'Slab work', img: '1600585154340-be6161a56a0c',
+    { id: 'corner-court-retail', cat: 'Commercial', title: 'Corner Court Retail', meta: 'Slab work', img: '1600585154340-be6161a56a0c',
+      location: 'Khanapur Road, Belgaum', size: 'G+3 mixed-use',
       desc: 'A mixed-use retail and office corner block on Khanapur Road at structural stage.' },
   ]},
 ];
+const allProjects = projectGroups.flatMap(g => g.items.map(it => ({ ...it, status: g.status })));
 const IMG = id => `https://images.unsplash.com/photo-${id}?w=800&q=70&auto=format&fit=crop`;
 
 const services = [
@@ -70,36 +83,61 @@ const faqs = [
 // ─── RENDER HELPERS ───────────────────────────────────
 function el(html) { const t = document.createElement('template'); t.innerHTML = html.trim(); return t.content.firstChild; }
 
-// Projects (grouped by status)
+// Home — featured project cards (compact), whole card links to the projects page
+const featuredIds = ['skyline-residency', 'kale-residency', 'metro-business-hub', 'tilakwadi-villas', 'university-arcade', 'auto-park-warehouse'];
+const featuredGrid = document.getElementById('featuredGrid');
+if (featuredGrid) {
+  allProjects.filter(p => featuredIds.includes(p.id)).forEach(p => {
+    featuredGrid.appendChild(el(`
+      <a class="work-card fade-up" href="projects.html" aria-label="${p.title} — view on projects page">
+        <div class="work-bg" style="background-image:url('${IMG(p.img)}');background-size:cover;background-position:center"></div>
+        <span class="work-tag work-tag--${p.status.toLowerCase()}">${p.status}</span>
+        <div class="work-always">
+          <p class="work-cat">${p.cat}</p>
+          <h3 class="work-title">${p.title}</h3>
+        </div>
+        <div class="work-overlay">
+          <p class="work-cat">${p.cat}</p>
+          <h3 class="work-title">${p.title}</h3>
+          <p class="work-ai-desc">${p.desc}</p>
+          <p class="work-year">Read more →</p>
+        </div>
+      </a>`));
+  });
+}
+
+// Projects page — detailed cards grouped by status
 const worksGroups = document.getElementById('worksGroups');
 if (worksGroups) {
   projectGroups.forEach(g => {
+    const s = g.status.toLowerCase();
     const group = el(`
       <div class="work-group fade-up">
         <div class="work-group-head">
-          <span class="work-status work-status--${g.status.toLowerCase()}">${g.status}</span>
+          <span class="work-status work-status--${s}">${g.status}</span>
           <span class="work-group-line"></span>
           <span class="work-group-count">${g.items.length} Projects</span>
         </div>
-        <div class="works-grid"></div>
+        <div class="pgrid"></div>
       </div>`);
-    const grid = group.querySelector('.works-grid');
+    const grid = group.querySelector('.pgrid');
     g.items.forEach(p => {
       grid.appendChild(el(`
-        <div class="work-card">
-          <div class="work-bg" style="background-image:url('${IMG(p.img)}');background-size:cover;background-position:center"></div>
-          <span class="work-tag work-tag--${g.status.toLowerCase()}">${g.status}</span>
-          <div class="work-always">
-            <p class="work-cat">${p.cat}</p>
-            <h3 class="work-title">${p.title}</h3>
+        <article class="pcard">
+          <div class="pcard-img" style="background-image:url('${IMG(p.img)}')">
+            <span class="work-tag work-tag--${s}">${g.status}</span>
           </div>
-          <div class="work-overlay">
+          <div class="pcard-body">
             <p class="work-cat">${p.cat}</p>
-            <h3 class="work-title">${p.title}</h3>
-            <p class="work-ai-desc">${p.desc}</p>
-            <p class="work-year">${p.meta}</p>
+            <h3 class="pcard-title">${p.title}</h3>
+            <p class="pcard-desc">${p.desc}</p>
+            <div class="pcard-specs">
+              <div><span>Location</span><strong>${p.location}</strong></div>
+              <div><span>Size</span><strong>${p.size}</strong></div>
+              <div><span>Status</span><strong>${p.meta}</strong></div>
+            </div>
           </div>
-        </div>`));
+        </article>`));
     });
     worksGroups.appendChild(group);
   });

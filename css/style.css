@@ -624,3 +624,39 @@
 
     /* anchors styled as primary buttons */
     a.btn-primary { display: inline-block; text-decoration: none; }
+
+    /* ─── FEATURED (home) + DETAILED PROJECT CARDS ─────── */
+    a.work-card { display: block; text-decoration: none; }
+    .featured-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 60px; }
+    .featured-actions { text-align: center; margin-top: 46px; }
+
+    /* Detailed project cards (projects page) */
+    .pgrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; }
+    .pcard {
+      display: flex; flex-direction: column;
+      background: var(--glass); border: 1px solid rgba(200,213,196,0.08);
+      border-radius: 14px; overflow: hidden;
+      transition: transform 0.35s, border-color 0.35s, box-shadow 0.35s;
+    }
+    .pcard:hover { transform: translateY(-6px); border-color: var(--sage); box-shadow: 0 20px 44px rgba(0,0,0,0.4); }
+    .pcard-img {
+      position: relative; aspect-ratio: 16/10;
+      background-size: cover; background-position: center;
+    }
+    .pcard-body { padding: 26px 26px 28px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+    .pcard-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 1.7rem; color: var(--cream); }
+    .pcard-desc { font-size: 0.9rem; line-height: 1.75; color: var(--mist); }
+    .pcard-specs {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+      margin-top: auto; padding-top: 18px; border-top: 1px solid rgba(200,213,196,0.08);
+    }
+    .pcard-specs span { display: block; font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sage); margin-bottom: 5px; }
+    .pcard-specs strong { font-size: 0.82rem; font-weight: 400; color: var(--cream); }
+
+    @media (max-width: 900px) {
+      .featured-grid { grid-template-columns: 1fr 1fr; }
+      .pgrid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      .featured-grid { grid-template-columns: 1fr; }
+    }
